@@ -1,47 +1,67 @@
 ## mako
-<%! from django.utils.translation import ugettext as _ %>
-<%! from microsite_configuration.templatetags.microsite import platform_name %>
-<%namespace name='static' file='static_content.html'/>
+<%! 
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+  from edxmako.shortcuts import marketing_link
+%>
+<div class="wrapper-footer">
+  <footer>
+    <div class="colophon">
+<!--
+      <a href="http://openedx.org" style="padding-bottom:10px" target="_blank">
+        <span class="sr">${_('Powered by {platform_name}').format(platform_name='Open edX')}</span>
+        <img src="https://files.edx.org/openedx-logos/edx-openedx-logo-tag-light.png" height="20" alt="${_('Powered by {platform_name}').format(platform_name='Open edX')}"/>
+      </a>
+-->
+      <!---->
+    </div>
+    <div class="references">
+      <!---->
+    </div>
+  </footer>
+</div>
 
-<footer class="global">
-  <div class="footer-container">
-    <ul class="links">
-      %if settings.MKTG_URL_LINK_MAP.get('ABOUT'):
+<div id="sen-footer">
+  <div class="sen-container">
+    <div class="sen-row">
+      <div id="sen-footer-logo" class="span2">
+        <a href="http://www.certific.net.br/" target="_blank">
+          <img src="/static/themes/seneca/images/logo_small_white_college.png" alt="Seneca College of Applied Arts and Technology" width="105" height="60"/>
+        </a>
+      </div>
+      <div id="sen-footer-text" class="span10">
+        <ul>
+          <li><a href="/" target="_blank">Página Inicial</a></li>
+          %if settings.MKTG_URL_LINK_MAP.get('ABOUT'):
       <li>
-        <a id="about" href="${marketing_link('ABOUT')}">${_("About")}</a>
+        <a id="about" href="${marketing_link('ABOUT')}">${_("Sobre")}</a>
       </li>
-      %endif
+          %endif
       %if settings.MKTG_URL_LINK_MAP.get('FAQ'):
       <li>
         <a id="faq" href="${marketing_link('FAQ')}">${_("FAQ")}</a>
       </li>
-      %endif
+          %endif
       %if settings.MKTG_URL_LINK_MAP.get('CONTACT'):
       <li>
-        <a id="contact" href="${marketing_link('CONTACT')}">${_("Contact")}</a>
+        <a id="contact" href="${marketing_link('CONTACT')}">${_("Contato")}</a>
       </li>
-      %endif
-      %if settings.MKTG_URL_LINK_MAP.get('TOS'):
-      <li>
-        <a href="${marketing_link('TOS')}">${_("Terms of Service")}</a>
-      </li>
-      %endif
-      %if settings.MKTG_URL_LINK_MAP.get('HONOR'):
-      <li>
-        <a href="${marketing_link('HONOR')}">${_("Honor Code")}</a>
-      </li>
-      %endif
-      %if settings.MKTG_URL_LINK_MAP.get('PRIVACY'):
-      <li>
-        <a href="${marketing_link('PRIVACY')}">${_("Privacy Policy")}</a>
-      </li>
-      %endif
-    </ul>
-    <p class="copyright">${_(u"© 2015 {platform_name}, some rights reserved.").format(platform_name=platform_name())}</p>
-    <div class="by-ionisx">
-      <a href="https://ionisx.com">
-        <img src="${static.url('themes/{theme_name}/images/logo-x-white.png'.format(theme_name=settings.THEME_NAME))}" alt="Theme by IONISx">
-      </a>
+
+        </ul>
+        <div class="clear"></div>
+        <p class="copyright vcard">&copy; <span class="fn org">Certific NET - Treinamento Capacitação e Certificação Ltda. CNPJ: 17.134.138/0001-86</span>, <span class="adr"> <span class="locality">Fortaleza</span>, <span class="region">Brasil</span></span></p>
+      </div>
+      <div style="clear: both;"></div>
     </div>
   </div>
-</footer>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+
+
+
+<script>
+    $(document).ready(function(){
+        $('li > a:contains("Discussion")').remove();
+    });
+</script>
